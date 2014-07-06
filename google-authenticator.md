@@ -2,6 +2,9 @@ google-authenticator setup
 =======================================
 
 
+Make sure EPEL repo is setup. If not add this repo your system.
+
+
 yum install ntp
 
 chkconfig ntpd on
