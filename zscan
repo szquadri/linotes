@@ -1,0 +1,71 @@
+#!/bin/sh
+# A document capture and photocopy script
+# Uses default scanner and printer installed on system.
+# Tested on CentOS 6.x
+# Copyright SZ Quadri <sz@quadri.in>. All Rights Reserved.
+# Requires: sane ImageMagick exiv2
+# Desirable: For PDF: pdftk
+#-------------------------------------------------------------
+
+store=$HOME/.cache/zscan
+tn=1
+mkdir -p $store
+cd $store
+did=$(date +%s)
+p=1
+# scan documents 
+
+
+
+capture(){
+	
+	zenity --info --text="Please put page $p in the scanner and click ok to continue"
+	
+     (echo "#$(scanimage -p --resolution 300 > $tn.pnm)") |
+        zenity --progress --title="Scanner" --text="Scanning document..." --percentage=0
+          
+	convert $tn.pnm $tn.jpg
+
+	sum=$(sha256sum $tn.jpg | awk '{ print $1 }')
+	exiv2 -M "set Exif.Photo.UserComment charset=Ascii $did|$p/$n|$dt|$ent|$title|$kw" $tn.jpg
+	fname="$did-$p"
+	mv $tn.jpg "$fname"
+	rm -f $tn.jpg
+	eog "$fname"
+}
+
+
+photocopy(){
+	# -------- Scan and print the page on default printer
+     (echo "#$(scanimage -p --resolution 200 --mode Gray > $tn.pnm)") |
+        zenity --progress --title="Scanner" --text="Scanning document..." --percentage=0
+	convert -level 25%,75% $tn.pnm $tn.jpg
+	n=$(zenity --entry --entry-text=1 --text="No of Copies")
+	lp -o fitplot -o media=a4 -n $n $tn.jpg
+	#rm -f $tn.*
+}
+
+
+if [ "$(sane-find-scanner -q | wc -l)" = 0 ] ; then
+	zenity --error --title="Scanner Error" --text="Could not find any scanner. Connect or turn on Scanner."
+	exit
+fi
+	
+
+if zenity --question --text="Select your choice" --ok-label='Capture  Document' --cancel-label='Photo Copy'	; then
+	n=$(zenity --entry --entry-text=1 --text="No of Pages")
+	dt=$(zenity --calendar --title="Select a Date" --text="Select doc date." --date-format=%Y-%m-%d)
+	ent=$(zenity --entry --text="Party Name")
+	title=$(zenity --entry --text="Doc Title")
+	kw=$(zenity --text-info --text=KeyAndGist --editable --width 500 --height 400)	
+	for (( p=1; p<=$n; p++ ))
+	do
+		capture
+	done	
+    
+    
+else
+    photocopy
+fi
+
+exit
