@@ -1,0 +1,142 @@
+
+
+#-- base
+
+# should have the following stuff to make sysadmin happy
+yum install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen -y
+
+chkconfig --level 35 psacct on
+
+# stuff required for bare metal 
+yum install smartmontools -y
+
+
+
+yum erase sendmail bind -y
+
+yum insall portecle wireshark-gnome spice-client nautilus-open-terminal -y
+
+
+
+# For laptop
+yum install xbacklight -y
+
+
+
+
+
+#============= VM ===========================
+
+yum install gimp gimp-help avidemux p7zip -y
+
+
+
+#To connect to windows printers you need this
+yum install samba-client -y
+
+
+#yum install icedtea-web -y
+yum install mozilla-https-everywhere mozilla-adblockplus -y
+
+
+
+yum groupinstall virtualization
+yum install evolution liberoffice-{writer,calc} 
+
+
+
+#-- system programing. edb - excellent binary/asm debugger/viwer
+yum install gcc gdb edb git ncurses-devel autoconf automake libtool -y
+
+
+# -- java dev
+yum install java-1.8.0-openjdk-devel postgresql-server pgadmin3 mysql-server -y
+
+
+#android dev
+yum install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686 libX11-devel.i686 libXrender.i686 libXrandr.i686
+
+
+# Google Chrome. 
+# If you need google chrome, you can download rpm from this location
+# For key import see: http://www.google.com/linuxrepositories/
+curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+
+
+
+Add Usres
+===================================================
+
+
+Allow All Local Users to use Gnome-Boxes 
+====================================================
+
+-- add a group for virt users (session mode)
+groupadd virtu
+
+-- add rule to allow all members of virtu group access to libvirt 
+vi /etc/polkit-1/rules.d/10.virt.rules:
+
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.libvirt.unix.manage"
+            && subject.local
+            && subject.active
+            && subject.isInGroup("virtu")) {
+        return polkit.Result.YES;
+    }
+});
+
+
+-- now add the respective users to this group
+usermod -a -G virtu <username>
+
+
+
+
+################# Optional Stuff
+
+
+yum install audacity gnome-media-apps epiphany -y
+# See: http://rpmfusion.org/Configuration
+
+yum localinstall --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+yum install vlc gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-ffmpeg -y
+
+
+# For XFCE
+yum install gnome-screenshot gnome-disk-utility gnome-boxes -y
+
+
+#-- x2go client
+yum install x2goplugin
+
+#--x2go server
+yum install x2goserver
+
+
+
+
+# Install firebug from: https://addons.mozilla.org/en-US/firefox/addon/firebug/
+# https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
+# Install YSlow from:
+# Install GM scripts: 
+# -- YouTube
+# https://userscripts.org/scripts/show/25105
+# Captions
+# https://userscripts.org/scripts/show/50003
+
+
+
+############# Other Stuff you may need
+
+#MySQL Workbench from
+https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.1.7-1.fc20.i686.rpm
+
+# Run below for Guest/desktop use instance only
+# yum install cinnamon gnote florence hardinfo gparted tigervnc telepathy-sofiasip filezilla blueproximity wammu -y
+
+
+#yum install @xfce-desktop
+#yum install thunderbird -y
+#seems autoincluded. yum install @virtualization -y
+#yum install inkscape* *uniconvertor -y
