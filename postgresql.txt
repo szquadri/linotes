@@ -1,0 +1,78 @@
+-- for CentOS or older fedora run
+service postgresql initdb
+
+-- for fedora 17 + run 
+postgresql-setup initdb
+
+
+--Prompt (defaul)
+su - postgres 
+psql
+
+-- to reset the default password for superuser
+alter user postgres with password 'sa';
+
+-- turn posrgres automatically on on each boot (CentOS)
+chkconfig --level 35 postgresql on 
+
+
+-- we need to replace ident with md5 in last two conf lines of /var/lib/pgsql/data/pg_hba.conf    
+-- (for 9.3 pg upstream yum repo the file is: /var/lib/pgsql/data/9.3/pg_hba.conf Ref: https://wiki.postgresql.org/wiki/YUM_Installation)
+-- append following. comment all old lines dealing with same
+host    all             all              127.0.0.0/24       md5
+host    all             all             ::1/128             md5
+
+
+
+
+-- your pg is now setup
+
+
+
+-- Prompt when using md5 (TCP/IP)
+psql -hlocalhost -Upostgres
+
+
+-----
+create database mytestdb;
+CREATE USER mytestuser WITH PASSWORD 'changeit';
+GRANT ALL ON database mytestdb TO mytestuser;
+-----
+
+--backup/restore native
+pg_dump -Fc -h localhost -Upostgres -W -f outfile dbname
+pg_restore infile
+
+
+--backup/restore sql dump
+pg_dump -h localhost -Upostgres -W -f outfile.sql dbname
+psql -hlocalhost -Upostgres foo < foo.sql
+
+
+-- create tar.gz
+tar -czvf archive.tgz files/
+-- expand tar.gz
+tar -xvzf archive.tgz
+
+
+
+-- On server to enabled sql activity reporting change the property 
+stats_command_string = on
+in 
+vi /var/lib/pgsql/data/postgresql.conf
+
+
+
+
+EL5 (CentOS) :: upgrade postgresql to 8.4
+-----------------------------------------------
+--     backup your databases
+
+/etc/init.d/postgresql stop
+rpm -e --nodeps postgresql-libs
+yum erase postgresql
+yum install postgresql84-server
+mv /var/lib/pgsql/data /var/lib/pgsq/data_old
+/etc/init.d/postgresql start
+-- restore your databases
+
