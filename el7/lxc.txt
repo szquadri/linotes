@@ -1,0 +1,11 @@
+
+
+-- install EPEL
+
+
+yum install lxc lxc-templates lxc-extra
+yum install libvirt libvirt-daemon-lxc
+
+
+
+lxc-create -t download -n download-test -- -d centos -r 6 -a amd64
