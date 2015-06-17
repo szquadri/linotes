@@ -1,0 +1,9 @@
+
+-- for lxc tools
+dnf install lxc lxc-templates lxc-extra
+
+
+
+
+-- for libvirt usage
+export LIBVIRT_DEFAULT_URI=lxc:///
