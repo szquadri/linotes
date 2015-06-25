@@ -120,9 +120,9 @@ yum install x2goserver
 # https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
 # Install YSlow from:
 # Install GM scripts: 
-# -- YouTube
+# https://greasyfork.org/en/scripts/1317-download-youtube-videos-as-mp4/code
+# -- old scripts below which are no longer working
 # https://userscripts.org/scripts/show/25105
-# Captions
 # https://userscripts.org/scripts/show/50003
 
 
