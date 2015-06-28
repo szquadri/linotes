@@ -1,18 +1,13 @@
-#-- base
-
 # should have the following stuff to make sysadmin happy
-yum install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen xbacklight samba-client -y
+dnf install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen -y
 
-# stuff required for bare metal 
-dnf install smartmontools -y
+dnf install xbacklight samba-client smartmontools portecle wireshark-gnome spice-client nautilus-open-terminal -y
 
-yum erase sendmail bind -y
-
-dnf insall portecle wireshark-gnome spice-client nautilus-open-terminal -y
+dnf erase sendmail bind -y
 
 dnf install gimp gimp-help avidemux p7zip -y
 
-#yum install icedtea-web -y
+#dnf install icedtea-web -y
 dnf install mozilla-https-everywhere mozilla-adblockplus -y
 
 yum groupinstall virtualization
@@ -26,7 +21,6 @@ dnf install java-1.8.0-openjdk-devel postgresql-server pgadmin3 mysql-server -y
 
 #android dev
 dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686 libX11-devel.i686 libXrender.i686 libXrandr.i686
-
 
 #-- x2go client
 dnf install x2goplugin
