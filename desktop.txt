@@ -1,7 +1,7 @@
 # should have the following stuff to make sysadmin happy
 dnf install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen -y
 
-dnf install xbacklight samba-client smartmontools portecle wireshark-gnome spice-client nautilus-open-terminal -y
+dnf install xbacklight samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal -y
 
 dnf erase sendmail bind -y
 
