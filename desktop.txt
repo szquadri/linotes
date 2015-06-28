@@ -1,66 +1,63 @@
-
-
 #-- base
 
 # should have the following stuff to make sysadmin happy
-yum install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen -y
-
-chkconfig --level 35 psacct on
+yum install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen xbacklight samba-client -y
 
 # stuff required for bare metal 
-yum install smartmontools -y
-
-
+dnf install smartmontools -y
 
 yum erase sendmail bind -y
 
-yum insall portecle wireshark-gnome spice-client nautilus-open-terminal -y
+dnf insall portecle wireshark-gnome spice-client nautilus-open-terminal -y
 
-
-
-# For laptop
-yum install xbacklight -y
-
-
-
-
-
-#============= VM ===========================
-
-yum install gimp gimp-help avidemux p7zip -y
-
-
-
-#To connect to windows printers you need this
-yum install samba-client -y
-
+dnf install gimp gimp-help avidemux p7zip -y
 
 #yum install icedtea-web -y
-yum install mozilla-https-everywhere mozilla-adblockplus -y
-
-
+dnf install mozilla-https-everywhere mozilla-adblockplus -y
 
 yum groupinstall virtualization
-yum install evolution liberoffice-{writer,calc} 
-
-
+dnf install evolution liberoffice-{writer,calc} 
 
 #-- system programing. edb - excellent binary/asm debugger/viwer
-yum install gcc gdb edb git ncurses-devel autoconf automake libtool -y
-
+dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
 
 # -- java dev
-yum install java-1.8.0-openjdk-devel postgresql-server pgadmin3 mysql-server -y
-
+dnf install java-1.8.0-openjdk-devel postgresql-server pgadmin3 mysql-server -y
 
 #android dev
-yum install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686 libX11-devel.i686 libXrender.i686 libXrandr.i686
+dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686 libX11-devel.i686 libXrender.i686 libXrandr.i686
 
+
+#-- x2go client
+dnf install x2goplugin
+
+#--x2go server
+dnf install x2goserver
+
+# RPM Fusion
+# rpm -i http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-22.noarch.rpm
+
+dnf -y install fuse-exfat exfat-utils
 
 # Google Chrome. 
 # If you need google chrome, you can download rpm from this location
 # For key import see: http://www.google.com/linuxrepositories/
 curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -107,11 +104,7 @@ yum install vlc gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-ffmpeg -y
 yum install gnome-screenshot gnome-disk-utility gnome-boxes -y
 
 
-#-- x2go client
-yum install x2goplugin
 
-#--x2go server
-yum install x2goserver
 
 
 
