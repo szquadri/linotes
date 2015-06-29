@@ -39,6 +39,14 @@ dnf -y install fuse-exfat exfat-utils
 curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 
+TRIM Support (w/o trim your drive may turn very slow eventually)
+-----------------------------------------------
+# Check if drive supports trim (most do)
+hdparm -I /dev/sda | grep TRIM
+# modify  /etc/crypttab to append (after "none" then space) at end of each line "allow-discards"
+Ref: http://lukas.zapletalovi.com/2013/11/how-to-trim-your-ssd-in-fedora-19.html
+Note: It may need system restart (sometimes many times) to take effect
+
 
 
 
