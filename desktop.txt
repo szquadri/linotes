@@ -33,6 +33,12 @@ dnf install x2goserver
 
 dnf -y install fuse-exfat exfat-utils
 
+# for setting like do not suspend when laptop lid is closed
+# see: org -> gnome -> settings-daemon -> plugins -> power
+# set the lid-close-ac-action field either to blank or nothing
+dnf install -y dconf-editor
+
+
 # Google Chrome. 
 # If you need google chrome, you can download rpm from this location
 # For key import see: http://www.google.com/linuxrepositories/
