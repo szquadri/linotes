@@ -13,6 +13,9 @@ dnf install mozilla-https-everywhere mozilla-adblockplus -y
 yum groupinstall virtualization
 dnf install evolution liberoffice-{writer,calc} 
 
+# "Tweak Tool" for setting like do not suspend when laptop lid is closed
+dnf install -y  gnome-tweak-tool
+
 #-- system programing. edb - excellent binary/asm debugger/viwer
 dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
 
@@ -32,9 +35,6 @@ dnf install x2goserver
 # rpm -i http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-22.noarch.rpm
 
 dnf -y install fuse-exfat exfat-utils
-
-# "Tweak Tool" for setting like do not suspend when laptop lid is closed
-dnf install -y  gnome-tweak-tool
 
 
 # Google Chrome. 
