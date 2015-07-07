@@ -1,20 +1,14 @@
 # should have the following stuff to make sysadmin happy
 dnf install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen -y
 
-dnf install xbacklight samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal -y
+# "Tweak Tool" for setting like do not suspend when laptop lid is closed
+dnf install xbacklight samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal gnome-tweak-tool -y
 
-dnf erase sendmail bind -y
-
-dnf install gimp gimp-help avidemux p7zip -y
-
-#dnf install icedtea-web -y
-dnf install mozilla-https-everywhere mozilla-adblockplus -y
+# desktop use stuff
+dnf install gimp gimp-help avidemux p7zip mozilla-https-everywhere mozilla-adblockplus icedtea-web -y
 
 yum groupinstall virtualization
 dnf install evolution liberoffice-{writer,calc} 
-
-# "Tweak Tool" for setting like do not suspend when laptop lid is closed
-dnf install -y  gnome-tweak-tool
 
 #-- system programing. edb - excellent binary/asm debugger/viwer
 dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
