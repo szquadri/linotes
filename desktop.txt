@@ -7,9 +7,6 @@ dnf install xbacklight samba-client smartmontools portecle wireshark-gnome nauti
 # desktop use stuff
 dnf install gimp gimp-help avidemux p7zip mozilla-https-everywhere mozilla-adblockplus icedtea-web -y
 
-yum groupinstall virtualization
-dnf install evolution liberoffice-{writer,calc} 
-
 #-- system programing. edb - excellent binary/asm debugger/viwer
 dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
 
@@ -33,8 +30,12 @@ dnf -y install fuse-exfat exfat-utils
 
 # Google Chrome. 
 # If you need google chrome, you can download rpm from this location
-# For key import see: http://www.google.com/linuxrepositories/
+# For key import see: https://www.google.com/linuxrepositories/
 curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+
+#generally office and virt should be there but in case you want to install
+yum groupinstall virtualization
+dnf install evolution liberoffice-{writer,calc} 
 
 
 TRIM Support (w/o trim your drive may turn very slow eventually)
