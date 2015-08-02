@@ -14,7 +14,7 @@ dnf install java-1.8.0-openjdk-devel postgresql-server pgadmin3 mysql-server -y
 dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686 libX11-devel.i686 libXrender.i686 libXrandr.i686 -y
 
 # desktop use stuff
-dnf install gimp mozilla-https-everywhere mozilla-adblockplus icedtea-web -y
+dnf install gimp mozilla-https-everywhere mozilla-adblockplus -y
 
 
 
@@ -24,6 +24,9 @@ dnf install x2goplugin
 
 #--x2go server
 dnf install x2goserver
+
+#-- java applets
+dnf install icedtea-web -y
 
 # RPM Fusion
 # rpm -i http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-22.noarch.rpm
