@@ -4,17 +4,20 @@ dnf install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop 
 # "Tweak Tool" for setting like do not suspend when laptop lid is closed
 dnf install xbacklight samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal gnome-tweak-tool -y
 
-# desktop use stuff
-dnf install gimp gimp-help avidemux p7zip mozilla-https-everywhere mozilla-adblockplus icedtea-web -y
-
-#-- system programing. edb - excellent binary/asm debugger/viwer
+#-- system dev. edb - excellent binary/asm debugger/viwer
 dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
 
 # -- java dev
 dnf install java-1.8.0-openjdk-devel postgresql-server pgadmin3 mysql-server -y
 
 #android dev
-dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686 libX11-devel.i686 libXrender.i686 libXrandr.i686
+dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686 libX11-devel.i686 libXrender.i686 libXrandr.i686 -y
+
+# desktop use stuff
+dnf install gimp mozilla-https-everywhere mozilla-adblockplus icedtea-web -y
+
+
+
 
 #-- x2go client
 dnf install x2goplugin
@@ -26,7 +29,6 @@ dnf install x2goserver
 # rpm -i http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-22.noarch.rpm
 
 dnf -y install fuse-exfat exfat-utils
-
 
 # Google Chrome. 
 # If you need google chrome, you can download rpm from this location
