@@ -1,5 +1,5 @@
 # should have the following stuff to make sysadmin happy
-dnf install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen -y
+dnf install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen pgpdump -y
 
 # "Tweak Tool" for setting like do not suspend when laptop lid is closed
 dnf install xbacklight samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal gnome-tweak-tool -y
