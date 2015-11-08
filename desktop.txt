@@ -16,7 +16,8 @@ dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-d
 # desktop use stuff
 dnf install gimp mozilla-https-everywhere mozilla-adblockplus -y
 
-
+# ssl root cert install
+Copy the certificate to /etc/pki/ca-trust/source/anchors/ then run sudo update-ca-trust extract
 
 
 #-- x2go client
