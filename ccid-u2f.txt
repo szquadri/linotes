@@ -96,6 +96,9 @@ wget -O ~/.gnupg/gpg-agent-wrapper https://github.com/zaidsoft/linscripts/raw/ma
 
 === DOCS / REF
 
+-- using U2F and CCID both 
+http://forum.yubico.com/viewtopic.php?f=26&t=1519&start=10
+
 -- seems most coplete doc for fedora
 https://github.com/herlo/ssh-gpg-smartcard-config/blob/master/YubiKey_NEO.rst
 
