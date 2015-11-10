@@ -1,0 +1,113 @@
+-- for PlugUp key  create a udev rule
+vi /etc/udev/rules.d/10-security-key.rules
+-- put below content line
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="2581", ATTRS{idProduct}=="f1d0", MODE="0660", GROUP="<your_groupname>"
+
+
+
+-- for yubikey management
+dnf install gnupg2-smime ykpers yubikey-personalization-gui 
+
+-- for using yubikey neo as ccid smartcard
+dnf install gnupg2-smime  pcsc-tools opensc pcsc-lite-ccid
+
+systemctl start pcscd
+systemctl enable pcscd
+
+-- you can run pcsc_scan as user to check for detected ccid cards
+
+
+GPG2
+-------------
+
+-- create root key (it will autmatically create an Enc subkey)
+gpg2 --full-gen-key
+
+-- then use below to generated Signing Key and Authentication Key
+gpg2 --expert --edit-key <keyid>
+
+For adding Authentication subkey:
+gpg2 --expert --edit-key <keyid>
+Execute the command ‘addkey’ and then select option 8 (RSA set your own capabilities), toggle Sign and Encrypt capability OFF and Authenticate capability ON, then select a long keysize and specify how long the key should be valid according to personal policies.
+
+
+-- set values in card
+gpg2 --card-edit
+
+Enable admin commands with “admin”; use “passwd” to change the Admin PIN from default 12345678 and PIN from default 123456; use “name”, “lang” and “login” to set the card’s parameters.
+
+
+
+-- move keys to card. use keytocard command at gpg prompt
+gpg2 --expert --edit-key <keyid>
+
+Switch to secret keys with the “toggle” command.
+Select the key to move to the card using “key n” commands (toggles the marker on subkey n). Use “keytocard” command to move the marked key into appropriate slot on the card.
+
+
+-- adding keygrip will let you use auth subkey (present in local keyring) for ssh purposes. If you want to use auth key stored /moved in smartcard; skip this step
+-- note down authentication keygrip and write to ~/.gnupg/sshcontrol
+gpg2 --with-keygrip -k 
+vi ~/.gnupg/sshcontrol
+
+
+
+-- make a full backup of the key and store securely 
+gpg2 --export-secret-keys -a KEY_ID > full_backup.asc
+
+-- make every-day use backup (does not have primary key secret)
+-- includes everything except private key of primary key
+ gpg2 --export-secret-subkeys -a  KEY_ID > only_subkeys.asc
+
+
+-- on evryday machine you can restore backup
+ gpg2 --import only_subkeys.asc
+
+
+
+-- dump key packets for info
+gpg2 -a --export KEY_ID| gpg2 --list-packets --verbose
+
+
+
+== configure the machine/fedora user
+==========================================================
+
+--append the following to ~/.bashrc
+
+if [ ! -f /tmp/gpg-agent.env ]; then
+    killall gpg-agent;
+    eval $(gpg-agent --daemon --enable-ssh-support > /tmp/gpg-agent.env);
+fi
+. /tmp/gpg-agent.env
+
+
+# ssh authentication component
+source ${HOME}/.gnupg/gpg-agent-wrapper
+
+
+-- run following
+echo "use-agent" >> ~/.gnupg/gpg.conf
+echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
+wget -O ~/.gnupg/gpg-agent-wrapper https://github.com/zaidsoft/linscripts/raw/master/gpg-agent-wrapper && chmod +x ~/.gnupg/gpg-agent-wrapper
+
+-- now Reload GNOME-Shell So that the gpg-agent stuff above takes effect.
+
+
+=== DOCS / REF
+
+-- seems most coplete doc for fedora
+https://github.com/herlo/ssh-gpg-smartcard-config/blob/master/YubiKey_NEO.rst
+
+
+-- for gpg key generation etc
+Ref: http://blog.josefsson.org/2014/06/23/offline-gnupg-master-key-and-subkeys-on-yubikey-neo-smartcard/
+
+-- for card/ccid driver instalation etc
+Ref: http://stafwag.github.io/blog/blog/2015/06/16/using-yubikey-neo-as-gpg-smartcard-for-ssh-authentication/
+
+
+* OpenPGP "secret key" and "secret subkey" packets contain both public and private parameters. (you can verify using: gpg --export-secret-key KEY_ID | pgpdump )
+* 
+
+
