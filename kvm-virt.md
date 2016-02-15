@@ -1,5 +1,32 @@
 KVM Virtualization
 
+yum install screen bridge-utils 
+yum install tigervnc-server
+
+run following so firewalld can be disabled:
+systemctl stop firewalld
+systemctl mask firewalld
+-- now install and enable iptables
+yum install iptables-services
+systemctl enable iptables
+
+
+
+#### install webmin
+rpm -i http://www.webmin.com/download/rpm/webmin-current.rpm
+
+
+### Installing cloudmin
+wget http://cloudmin.virtualmin.com/gpl/scripts/cloudmin-kvm-redhat-install.sh
+chmod +x cloudmin-kvm-redhat-install.sh
+./cloudmin-kvm-redhat-install.sh --bridge-interface virbr0
+
+### uninstall cloudmin
+rpm -e webmin wbm-server-manager wbt-virtual-server-theme wbt-virtual-server-mobile wbm-security-updates
+rm /etc/yum.repos.d/cloudmin
+
+
+
 
 yum install qemu-kvm qemu-img qemu-kvm-tools python-virtinst libvirt libvirt-client virt-top virt-viewer bridge-utils -y
 yum install java-1.6.0-openjdk-devel  *guestf* libguestfs-tools -y
