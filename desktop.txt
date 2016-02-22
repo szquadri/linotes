@@ -2,7 +2,7 @@
 dnf install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen pgpdump -y
 
 # "Tweak Tool" for setting like do not suspend when laptop lid is closed
-dnf install wodim xbacklight samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal gnome-tweak-tool -y
+dnf install wodim xbacklight lm_sensors samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal gnome-tweak-tool bleachbit -y
 
 #-- system dev. edb - excellent binary/asm debugger/viwer
 dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
