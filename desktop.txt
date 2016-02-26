@@ -30,14 +30,17 @@ dnf install x2goserver
 dnf install icedtea-web -y
 
 # RPM Fusion
+# Ref: http://unix.stackexchange.com/questions/40856/how-to-add-the-rpm-fusion-and-livna-repositories-to-fedora
 # rpm -i http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-22.noarch.rpm
+# Note: mp3 etc need nonfree as well; so you will not be able to play mp3 etc
+
 
 dnf -y install fuse-exfat exfat-utils
 
 # Google Chrome. 
 # If you need google chrome, you can download rpm from this location
 # For key import see: https://www.google.com/linuxrepositories/
-curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 #generally office and virt should be there but in case you want to install
 yum groupinstall virtualization
