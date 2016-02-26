@@ -29,10 +29,14 @@ dnf install x2goserver
 #-- java applets
 dnf install icedtea-web -y
 
+# create a custom user with id 1000
+# sudo groupadd -g1000 foouser; sudo useradd -m -u1000 -g1000 foouser
+
 # RPM Fusion
 # Ref: http://unix.stackexchange.com/questions/40856/how-to-add-the-rpm-fusion-and-livna-repositories-to-fedora
 # rpm -i http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-22.noarch.rpm
 # Note: mp3 etc need nonfree as well; so you will not be able to play mp3 etc
+# dnf install vlc gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-ffmpeg -y
 
 
 dnf -y install fuse-exfat exfat-utils
