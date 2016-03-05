@@ -4,6 +4,13 @@ dnf install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop 
 # "Tweak Tool" for setting like do not suspend when laptop lid is closed
 dnf install wodim xbacklight lm_sensors powertop samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal gnome-tweak-tool bleachbit -y
 
+# ccid authentication
+dnf install gnupg2-smime  pcsc-tools opensc pcsc-lite-ccid -y
+
+# - add "auth required pam_google_authenticator.so" (w/o quotes as a line) to /etc/pam.d/gdm-password file
+# - insert line just after all "auth" lines. To configure a user run "google-authenticator" as that user
+dnf install google-authenticator -y
+
 #-- system dev. edb - excellent binary/asm debugger/viwer
 dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
 
@@ -14,7 +21,7 @@ dnf install java-1.8.0-openjdk-devel postgresql-server pgadmin3 mysql-server -y
 dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686 libX11-devel.i686 libXrender.i686 libXrandr.i686 -y
 
 # desktop use stuff
-dnf install gimp mozilla-https-everywhere mozilla-adblockplus -y
+dnf install gimp mozilla-https-everywhere -y
 
 # ssl root cert install
 Copy the certificate to /etc/pki/ca-trust/source/anchors/ then run sudo update-ca-trust extract
