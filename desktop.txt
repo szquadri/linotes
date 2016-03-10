@@ -68,11 +68,12 @@ TRIM Support (w/o trim your drive may turn very slow eventually)
 # Check if drive supports trim (most do)
 hdparm -I /dev/sda | grep TRIM
 # modify  /etc/crypttab to append (after "none" then space) at end of each line "allow-discards"
+# In /etc/lvm/lvm.conf set issue_discards = 1
+sudo grubby --update-kernel=ALL --args=rd.luks.options=discard
+sudo dracut -f
+# now reboot
 Ref: http://lukas.zapletalovi.com/2013/11/how-to-trim-your-ssd-in-fedora-19.html
 Note: It may need system restart (sometimes many times) to take effect
-
-
-
 
 
 
