@@ -77,6 +77,13 @@ Ref: http://lukas.zapletalovi.com/2013/11/how-to-trim-your-ssd-in-fedora-19.html
 Note: It may need system restart (sometimes many times) to take effect
 
 
+Secure Boot / UEFI Issues:
+----------------------------
+Create a boot menu entry in bios
+```
+sudo efibootmgr -c -w -d /dev/sda -p 1 -l '\EFI\fedora\shim.efi' -L MyFedoraLabel
+```
+# -p is EFI partition number as x in /dev/sd{x} in our case its /dev/sda1 so p is 1
 
 
 
