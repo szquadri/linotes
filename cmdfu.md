@@ -20,4 +20,5 @@ watch -d -n0 "netstat -atnp | grep ESTA"
 ```
 libata.force=1.00:disable
 ```
+Ref: https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=b8bd6dc36186fe99afa7b73e9e2d9a98ad5c4865
 
