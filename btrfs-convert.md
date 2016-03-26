@@ -1,6 +1,8 @@
-## Convert ext4 etc fs to btrfs on installed system (F23)
+## Convert ext4 etc fs to btrfs on installed system (tested on F23)
 
-### Convert the anyfs to btrfs
+
+To Convert anyfs to btrfs:-
+-----------------------------
 Boot from Live CD then
 ```
  btrfs-convert  <your_partition_name>
@@ -10,7 +12,10 @@ Replace your actually partition name with <your_partition_name> in the above com
 After above command suceeds, use lsblk to view changes and update /etc/fstab to reflect new UUID of the "/" (and other patitions)
 
 ### Update Grub configuration
-Assuming new root is mounted at /run/media/liveuser/newdiskroot. All partitions like /boot (on HD) should be mountecd again under this new root.
+Assuming new root is mounted at /run/media/liveuser/newdiskroot. All partitions like /boot (on HD) should be mountecd again under this new root so when grub2 re-setup runs it find all the partitions in the chroot at usual paths.
+
+Now run following to re-generate and save grub2 configuration.
+
 ```
 for d in /sys /dev /run /proc ; do mount -v --bind "$d" /run/media/liveuser/newdiskroot"$d" ; done
 chroot /run/media/liveuser/newdiskroot
@@ -20,7 +25,7 @@ grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 before running above command make sure all other directories were properly mounted under new root (like "/boot") etc.
 
-Remove the LiveCD and boot from insalation media. You should be btrfs business now!
+Remove the LiveCD and boot from instalation media. You should be in btrfs business now!
 
 
 Ref:
