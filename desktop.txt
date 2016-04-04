@@ -1,8 +1,5 @@
-# should have the following stuff to make sysadmin happy
+# should have the following stuff to make dev happy
 dnf install wget mc nc socat strace sysstat dstat psacct hdparm htop iftop atop iptraf mtr jwhois mutt elinks tmux screen pgpdump -y
-
-# "Tweak Tool" for setting like do not suspend when laptop lid is closed
-dnf install wodim xbacklight lm_sensors powertop samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal gnome-tweak-tool gitk gitg -y
 
 # ccid authentication
 dnf install gnupg2-smime  pcsc-tools opensc pcsc-lite-ccid -y
@@ -11,14 +8,17 @@ dnf install gnupg2-smime  pcsc-tools opensc pcsc-lite-ccid -y
 # - insert line just after all "auth" lines. To configure a user run "google-authenticator" as that user
 dnf install google-authenticator -y
 
-#-- system dev. edb - excellent binary/asm debugger/viwer
-dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
+# "Tweak Tool" for setting like do not suspend when laptop lid is closed
+dnf install wodim xbacklight lm_sensors powertop samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal gnome-tweak-tool gitk gitg -y
 
 # -- java dev
 dnf install java-1.8.0-openjdk-devel postgresql-server pgadmin3 mysql-server -y
 
 #android dev
 dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-devel.i686 libX11-devel.i686 libXrender.i686 libXrandr.i686 -y
+
+#-- system dev. edb - excellent binary/asm debugger/viwer
+dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
 
 # desktop use stuff
 dnf install gimp gnome-maps simple-scan hplip-gui bleachbit openscap-scanner scap-workbench scap-security-guide -y
