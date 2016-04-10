@@ -68,30 +68,15 @@ gpg2 --export-secret-keys -a KEY_ID > full_backup.asc
 -- dump key packets for info
 gpg2 -a --export KEY_ID| gpg2 --list-packets --verbose
 
-
-
-== configure the machine/fedora user
 ==========================================================
 
---append the following to ~/.bashrc
-
-if [ ! -f /tmp/gpg-agent.env ]; then
-    killall gpg-agent;
-    eval $(gpg-agent --daemon --enable-ssh-support > /tmp/gpg-agent.env);
-fi
-. /tmp/gpg-agent.env
+## FDE and Yubikey
+Interesting dracut tweak is discussed at http://forums.fedoraforum.org/showthread.php?t=289713
 
 
-# ssh authentication component
-source ${HOME}/.gnupg/gpg-agent-wrapper
 
 
--- run following
-echo "use-agent" >> ~/.gnupg/gpg.conf
-echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
-wget -O ~/.gnupg/gpg-agent-wrapper https://github.com/zaidsoft/linscripts/raw/master/gpg-agent-wrapper && chmod +x ~/.gnupg/gpg-agent-wrapper
 
--- now Reload GNOME-Shell So that the gpg-agent stuff above takes effect.
 
 
 === DOCS / REF
