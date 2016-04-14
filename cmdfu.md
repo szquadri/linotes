@@ -1,5 +1,10 @@
 
 ### list commit id of HEAD for all repos under given dir
+````
+find . -type d -name .git -exec sh -c "cd \"{}\"/../ && pwd && git log --pretty=oneline master -1" \;
+````
+or
+
 ```
 find . -type d -name .git -exec sh -c "cd \"{}\"/../ && pwd && git rev-parse HEAD" \;
 ```
