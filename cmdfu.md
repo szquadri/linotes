@@ -1,4 +1,8 @@
 
+### list commit id of HEAD for all repos under given dir
+```
+find . -type d -name .git -exec sh -c "cd \"{}\"/../ && pwd && git rev-parse HEAD" \;
+```
 
 
 ### Watch a list of processes trying to connect to port 25
