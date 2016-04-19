@@ -6,7 +6,7 @@ postgresql-setup initdb
 
 
 --Prompt (defaul)
-su - postgres 
+sudo su - postgres 
 psql
 
 -- to reset the default password for superuser

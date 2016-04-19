@@ -1,42 +1,74 @@
 
 # ssl root cert install
-Copy the certificate to /etc/pki/ca-trust/source/anchors/ then run sudo update-ca-trust extract
+Copy the certificate to /etc/pki/ca-trust/source/anchors/ then run 
+```
+sudo update-ca-trust extract
+```
+
 
 #-- x2go client
-dnf install x2goplugin
+```
+dnf install x2goclient
+```
 
 #--x2go server
+```
 dnf install x2goserver
+```
 
 #-- java applets
+```
 dnf install icedtea-web -y
+```
 
 # create a custom user with id 1000
-# sudo groupadd -g1000 foouser; sudo useradd -m -u1000 -g1000 foouser
+```
+sudo groupadd -g1000 foouser; sudo useradd -m -u1000 -g1000 foouser
+```
+
 
 # RPM Fusion
-# Ref: http://unix.stackexchange.com/questions/40856/how-to-add-the-rpm-fusion-and-livna-repositories-to-fedora
-# rpm -i http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-22.noarch.rpm
-# Note: mp3 etc need nonfree as well; so you will not be able to play mp3 etc
-# dnf install vlc gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-ffmpeg -y
+Ref: http://unix.stackexchange.com/questions/40856/how-to-add-the-rpm-fusion-and-livna-repositories-to-fedora
+```
+rpm -i http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-22.noarch.rpm
+```
 
+Note: mp3 etc need nonfree as well; so you will not be able to play mp3 etc
+```
+dnf install vlc gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-ffmpeg -y
+```
+
+
+Use > 32 GB SD Cards (M$ compatible)
+```
 dnf -y install fuse-exfat exfat-utils
+```
 
-# Google Chrome. 
-# If you need google chrome, you can download rpm from this location
-# For key import see: https://www.google.com/linuxrepositories/
+##Google Chrome. 
+If you need google chrome, you can download rpm from this location
+For key import see: https://www.google.com/linuxrepositories/
+```
 wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+```
 
 
-TRIM Support (w/o trim your drive may turn very slow eventually)
+## TRIM Support (w/o trim your drive may turn very slow eventually)
 -----------------------------------------------
-# Check if drive supports trim (most do)
+Check if drive supports trim (most do)
+```
 hdparm -I /dev/sda | grep TRIM
-# modify  /etc/crypttab to append (after "none" then space) at end of each line "allow-discards"
-# In /etc/lvm/lvm.conf set issue_discards = 1
+```
+
+modify  /etc/crypttab to append (after "none" then space) at end of each line "allow-discards"
+In /etc/lvm/lvm.conf set issue_discards = 1
+```
 sudo grubby --update-kernel=ALL --args=rd.luks.options=discard
 sudo dracut -f
+```
+
 # now reboot
+
+
 Ref: http://lukas.zapletalovi.com/2013/11/how-to-trim-your-ssd-in-fedora-19.html
 Note: It may need system restart (sometimes many times) to take effect
 
@@ -68,11 +100,16 @@ Allow All Local Users to use Gnome-Boxes
 ====================================================
 
 -- add a group for virt users (session mode)
+```
 groupadd virtu
+```
 
 -- add rule to allow all members of virtu group access to libvirt 
+```
 vi /etc/polkit-1/rules.d/10.virt.rules:
+```
 
+```
 polkit.addRule(function(action, subject) {
     if (action.id == "org.libvirt.unix.manage"
             && subject.local
@@ -81,10 +118,12 @@ polkit.addRule(function(action, subject) {
         return polkit.Result.YES;
     }
 });
-
+```
 
 -- now add the respective users to this group
+```
 usermod -a -G virtu <username>
+```
 
 
 
