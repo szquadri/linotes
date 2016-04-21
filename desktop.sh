@@ -12,7 +12,7 @@ dnf install gnupg2-smime  pcsc-tools opensc pcsc-lite-ccid -y
 dnf install google-authenticator -y
 
 # "Tweak Tool" for setting like do not suspend when laptop lid is closed
-dnf install wodim xbacklight lm_sensors usbguard samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal gnome-tweak-tool gitk gitg -y
+dnf install wodim xbacklight lm_sensors usbguard samba-client smartmontools portecle wireshark-gnome nautilus-open-terminal dconf-editor gnome-tweak-tool gitk gitg -y
 
 # -- java dev
 dnf install java-1.8.0-openjdk-devel postgresql-server pgadmin3 mysql-server -y
