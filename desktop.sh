@@ -26,4 +26,9 @@ dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
 # desktop use stuff
 dnf install gimp gnome-maps simple-scan hplip-gui bleachbit openscap-scanner scap-workbench scap-security-guide -y
 
+# disable tracker and remote its db as we don't need it
+gsettings set org.freedesktop.Tracker.Miner.Files crawling-interval -2
+gsettings set org.freedesktop.Tracker.Miner.Files enable-monitors false
+tracker-control -r
+
 
