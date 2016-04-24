@@ -20,6 +20,21 @@ watch -n 2 "lsof -i:25 "
 netstat -pet
 ```
 
+###delete files having Jan 26 as date in current folder
+```
+ls -l . |grep "^-.*Jan 26" | awk '{print $9}' |xargs rm
+```
+
+
+### Disallow user foo to make any outgoing connections
+```
+iptables -I OUTPUT -o eth0 -m owner --uid-owner foo -j REJECT
+iptables -I OUTPUT -o eth1 -m owner --uid-owner foo -j REJECT
+iptables -I OUTPUT -o lo -m owner --uid-owner foo -j REJECT
+```
+
+
+
 ### watch list of connections
 ```
 watch -d -n0 "netstat -atnp | grep ESTA"
