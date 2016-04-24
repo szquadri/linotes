@@ -15,7 +15,7 @@ fi
 source ${HOME}/.gnupg/gpg-agent-wrapper
 EOT
 
-HST=https://github.com/zaidsoft/linscripts
+HST=https://github.com/szquadri/linotes
 
 rm -f gpg-1v2.pub
 wget -c $HST/raw/master/gpg-1v2.pub
