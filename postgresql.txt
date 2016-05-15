@@ -1,23 +1,23 @@
--- for CentOS or older fedora run
+-- for el6 or older fedora run
 service postgresql initdb
+chkconfig --level 35 postgresql on
 
--- for fedora 17 + run 
-postgresql-setup initdb
 
+-- for fedora/el7 run 
+sudo postgresql-setup --initdb --unit postgresql
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
 
 --Prompt (defaul)
 sudo su - postgres 
 psql
 
 -- to reset the default password for superuser
-alter user postgres with password 'sa';
+alter user postgres with password '<sa_password';
 
--- turn posrgres automatically on on each boot (CentOS)
-chkconfig --level 35 postgresql on 
 
 
 -- we need to replace ident with md5 in last two conf lines of /var/lib/pgsql/data/pg_hba.conf    
--- (for 9.3 pg upstream yum repo the file is: /var/lib/pgsql/data/9.3/pg_hba.conf Ref: https://wiki.postgresql.org/wiki/YUM_Installation)
 -- append following. comment all old lines dealing with same
 host    all             all              127.0.0.0/24       md5
 host    all             all             ::1/128             md5
@@ -75,4 +75,3 @@ yum install postgresql84-server
 mv /var/lib/pgsql/data /var/lib/pgsq/data_old
 /etc/init.d/postgresql start
 -- restore your databases
-
