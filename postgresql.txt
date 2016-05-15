@@ -13,7 +13,7 @@ sudo su - postgres
 psql
 
 -- to reset the default password for superuser
-alter user postgres with password '<sa_password';
+alter user postgres with password 'changeit';
 
 
 
