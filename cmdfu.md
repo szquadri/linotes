@@ -46,3 +46,9 @@ libata.force=1.00:disable
 ```
 Ref: https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=b8bd6dc36186fe99afa7b73e9e2d9a98ad5c4865
 
+## find outgoing dns queries on a host
+```
+tshark -f "udp port 53" -R "dns.qry.type == A and dns.flags.response == 0"
+-or-
+tcpdump -vvv -s 0 -l -n port 53
+```
