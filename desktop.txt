@@ -35,7 +35,7 @@ rpm -i http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-22.noar
 
 Note: mp3 etc need nonfree as well; so you will not be able to play mp3 etc
 ```
-dnf install vlc gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-ffmpeg -y
+dnf install vlc ffmpeg gstreamer-plugins-bad gstreamer-plugins-ugly gstreamer-ffmpeg -y
 ```
 
 
