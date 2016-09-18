@@ -3,6 +3,7 @@ firewall-cmd --set-default-zone=drop
 
 # should have the following stuff to make dev happy
 dnf install wget mc strace lsof sysstat dstat hdparm htop iftop atop nc socat mtr jwhois mutt elinks perf iperf iptraf httpry psacct powertop tmux screen pgpdump -y
+dnf install virt-manager libvirt-daemon-lxc libvirt-daemon-config-network -y
 
 # ccid authentication
 dnf install gnupg2-smime  pcsc-tools opensc pcsc-lite-ccid -y
