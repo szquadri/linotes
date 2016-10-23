@@ -13,6 +13,11 @@ fi
 
 # ssh authentication component
 source ${HOME}/.gnupg/gpg-agent-wrapper
+
+# recent fedora has different path for ssh auth sock
+SSH_AUTH_SOCK=/run/user/1000/gnupg/S.gpg-agent.ssh
+export SSH_AUTH_SOCK
+
 EOT
 
 HST=https://github.com/szquadri/linotes
