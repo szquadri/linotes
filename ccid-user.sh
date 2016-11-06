@@ -24,8 +24,13 @@ HST=https://github.com/szquadri/linotes
 
 rm -f gpg-1v2.pub
 wget -c $HST/raw/master/gpg-1v2.pub
-
 gpg2 --import gpg-1v2.pub
+
+rm -f gpg-1v3.pub
+wget -c $HST/raw/master/gpg-1v3.pub
+gpg2 --import gpg-1v3.pub
+
+
 
 echo "use-agent" >> ~/.gnupg/gpg.conf
 echo "enable-ssh-support" >> ~/.gnupg/gpg-agent.conf
