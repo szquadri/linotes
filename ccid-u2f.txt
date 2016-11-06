@@ -11,6 +11,10 @@ dnf install gnupg2-smime ykpers yubikey-personalization-gui
 -- for using yubikey neo as ccid smartcard
 dnf install gnupg2-smime  pcsc-tools opensc pcsc-lite-ccid
 
+-- lxde users need
+sudo dnf install pinentry-gtk
+
+
 systemctl start pcscd
 systemctl enable pcscd
 
