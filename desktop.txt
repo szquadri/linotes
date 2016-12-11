@@ -25,6 +25,10 @@ dnf install icedtea-web -y
 ```
 sudo groupadd -g1000 foouser; sudo useradd -m -u1000 -g1000 foouser
 ```
+## For bandwidth/internet usage monitoring Ref to following URL
+https://askubuntu.com/questions/1459/how-can-you-monitor-internet-data-usage
+
+
 
 
 # RPM Fusion
