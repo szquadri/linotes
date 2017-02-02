@@ -30,6 +30,11 @@ https://askubuntu.com/questions/1459/how-can-you-monitor-internet-data-usage
 
 
 
+Yubikey:
+#Ref: https://fedoramagazine.org/using-the-yubikey4-with-fedora/
+
+
+
 
 # RPM Fusion
 Ref: http://unix.stackexchange.com/questions/40856/how-to-add-the-rpm-fusion-and-livna-repositories-to-fedora
