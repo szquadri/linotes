@@ -5,8 +5,8 @@ firewall-cmd --set-default-zone=drop
 dnf install wget mc strace lsof sysstat dstat hdparm htop iftop atop nc socat mtr jwhois mutt elinks perf iperf iptraf httpry psacct powertop tmux screen pgpdump -y
 dnf install virt-manager libvirt-daemon-lxc libvirt-daemon-config-network -y
 
-# ccid authentication
-dnf install gnupg2-smime  pcsc-tools opensc pcsc-lite-ccid -y
+# ccid /yubikey authentication
+dnf install gnupg2-smime  pcsc-tools opensc pcsc-lite-ccid yubioath-desktop pam_yubico -y
 
 # - add "auth required pam_google_authenticator.so" (w/o quotes as a line) to /etc/pam.d/gdm-password file
 # - insert line just after all "auth" lines. To configure a user run "google-authenticator" as that user
