@@ -24,8 +24,8 @@ dnf install glibc.i686 glibc-devel.i686 libstdc++.i686 zlib-devel.i686 ncurses-d
 #-- system dev. edb - excellent binary/asm debugger/viwer
 dnf install gcc gdb edb git ncurses-devel autoconf automake libtool -y
 
-#-- system and java to native requires ---#
-dnf install glibc-devel.x86_64 -y
+#-- system and java to native requires x86_64 versions as well ---#
+dnf install glibc.x86_64 glibc-devel.x86_64 libstdc++.x86_64 zlib-devel.x86_64 ncurses-devel.x86_64 libX11-devel.x86_64 libXrender.x86_64 libXrandr.x86_64 -y-y
 
 # desktop use stuff
 dnf install gimp gnome-maps simple-scan hplip-gui bleachbit openscap-scanner scap-workbench scap-security-guide -y
